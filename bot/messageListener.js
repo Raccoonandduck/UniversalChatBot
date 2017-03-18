@@ -1,13 +1,14 @@
 const async = require('async');
 const prequest = require('request-promise');
 const Bot = require('./bot');
+const updateProcessor = require('./updateProcessor');
 
 async function longpoll(bot) {
     const api = await bot.getApi();
-    async.forever(sendRequest(api));
+    async.forever(sendRequest(api, bot.userId));
 }
 
-function sendRequest (api) {
+function sendRequest (api, botId) {
   let link = '';
   return next => {
     if (link === '') 
@@ -33,7 +34,7 @@ function sendRequest (api) {
                 return next();
             } 
 
-            console.log(response.updates);
+            updateProcessor(api, botId, response.updates);
 
             return next();
         }).catch(error => {
