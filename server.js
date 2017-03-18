@@ -1,10 +1,10 @@
 var connect = require('connect');
 var serveStatic = require('serve-static');
-var app = connect();
+var serverApp = connect();
 var serverPort = 888;
 
-app.use(serveStatic("."))
+serverApp.use(serveStatic("."))
 
-app.listen(serverPort, function() {
+serverApp.listen(serverPort, function() {
     console.log('Server running on ' + serverPort + '...');
 });

@@ -34,3 +34,7 @@ jspm_packages
 .node_repl_history
 
 .vscode
+
+# credentials
+token.txt
+config/config.js
